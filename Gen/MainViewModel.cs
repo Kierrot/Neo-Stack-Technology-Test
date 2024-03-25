@@ -1,4 +1,4 @@
-﻿namespace NeoStack
+﻿namespace Gen
 {
     internal class MainViewModel
     {

@@ -44,63 +44,62 @@
         <!-- Правая панель с таблицей и выражением -->
         <StackPanel  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#FF4E4B4A" Orientation="Vertical">
             <!-- Таблица DataGrid -->
-            <DataGrid ItemsSource="{Binding Table}" AutoGenerateColumns="False" Height="200">
+            <DataGrid ItemsSource="{Binding Table}" AutoGenerateColumns="False" Height ="auto" SelectionChanged="DataGrid_SelectionChanged" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="f(x,y)" Binding="{Binding Y}" Width="*"/>
+                    <DataGridTextColumn Header="f(x,y)" Binding="{Binding Result}" Width="*" IsReadOnly="True"/>
                     <!-- Колонка с x -->
                     <DataGridTextColumn Header="x" Binding="{Binding X}" Width="*"/>
                     <!-- Колонка с y -->
                     <DataGridTextColumn Header="y" Binding="{Binding Y}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <!-- Панель для выражения -->
-            <StackPanel  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#FF4E4B4A" Orientation="Horizontal">
-                <StackPanel.Style>
-                    <Style TargetType="StackPanel">
-                        <Style.Resources>
-                            <Style TargetType="TextBox">
-                                <Setter Property="FontStyle" Value="Italic"/>
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="TextAlignment" Value ="Center"/>
-                                <Setter Property="Height" Value="30"/>
-                                <Setter Property="Width" Value="30"/>
-                                <Setter Property="Margin" Value="5"/>
-                            </Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontStyle" Value="Italic"/>
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="TextAlignment" Value ="Center"/>
-                                <Setter Property="Height" Value="30"/>
-                                <Setter Property="Margin" Value="5"/>
-                                <Setter Property="FontFamily" Value="Palatino Linotype"/>
-                            </Style>
-                            <Style TargetType="ComboBox">
-                                <Setter Property="FontStyle" Value="Italic"/>
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="Margin" Value="5"/>
-                                <Setter Property="FontFamily" Value="Palatino Linotype"/>
-                            </Style>
-                        </Style.Resources>
-                    </Style>
-                </StackPanel.Style>
-                <!-- Поле для выражения -->
-                <TextBlock Text="{Binding Expression}" Margin="5" VerticalAlignment="Center"/>
-                <!-- Поля для a, x, b, y, c, и результата -->
-                <TextBox x:Name="a" Text="{Binding a}"/>
-                <TextBlock>x</TextBlock>
-                <TextBlock Typography.Variants="Superscript" Text="{Binding degreeX}"></TextBlock>
-                <TextBlock>+</TextBlock>
-                <TextBox x:Name="b" Text="{Binding b}"/>
-                <TextBlock>y</TextBlock>
-                <TextBlock Typography.Variants="Superscript" Text="{Binding degreeY}"></TextBlock>
-                <TextBlock>+</TextBlock>
-                <ComboBox x:Name="c" ItemsSource="{Binding CmbContent}" SelectedItem="{Binding SelectedValue}" />
-                <TextBlock>=</TextBlock>
-                <TextBlock MinWidth="50" Text="{Binding result}"></TextBlock>
-            </StackPanel>
+            
         </StackPanel>
+        <!-- Панель для выражения -->
+        <StackPanel  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="#FF4E4B4A" Orientation="Horizontal" Margin="30">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextAlignment" Value ="Center"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Margin" Value="5"/>
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextAlignment" Value ="Center"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Margin" Value="5"/>
+                            <Setter Property="FontFamily" Value="Palatino Linotype"/>
+                        </Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5"/>
+                            <Setter Property="FontFamily" Value="Palatino Linotype"/>
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </StackPanel.Style>
+            <!-- Поля для a, x, b, y, c, и результата -->
+            <TextBox x:Name="a" Text="{Binding a}"/>
+            <TextBlock>x</TextBlock>
+            <TextBlock Typography.Variants="Superscript" Text="{Binding degreeX}"></TextBlock>
+            <TextBlock>+</TextBlock>
+            <TextBox x:Name="b" Text="{Binding b}"/>
+            <TextBlock>y</TextBlock>
+            <TextBlock Typography.Variants="Superscript" Text="{Binding degreeY}"></TextBlock>
+            <TextBlock>+</TextBlock>
+            <ComboBox x:Name="c" ItemsSource="{Binding CmbContent}" SelectedItem="{Binding SelectedValue}" />
+            <Button Content="Добавить строку" Command="{Binding AddRowCommand}" Margin="5" MinWidth="120"/>
+        </StackPanel>
+        
     </Grid>
 </Window>

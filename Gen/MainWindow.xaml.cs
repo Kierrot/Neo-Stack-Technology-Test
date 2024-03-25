@@ -1,23 +1,77 @@
-﻿
+﻿using Eco.Persistence;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
 namespace NeoStack
 {
-   
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
+    public class TableRow : INotifyPropertyChanged
+    {
+        private double result;
+        public double Result
+        {
+            get { return result; }
+            set
+            {
+                if (result != value)
+                {
+                    result = value;
+                    RaisePropertyChanged(nameof(Result));
+                }
+            }
+        }
+
+        private int x;
+        public int X
+        {
+            get { return x; }
+            set
+            {
+                if (x != value)
+                {
+                    x = value;
+                    RaisePropertyChanged(nameof(X));
+                }
+            }
+        }
+
+        private int y;
+        public int Y
+        {
+            get { return y; }
+            set
+            {
+                if (y != value)
+                {
+                    y = value;
+                    RaisePropertyChanged(nameof(Y));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void RaisePropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new ViewModel();
+        }
+
+        private void DataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 
@@ -29,10 +83,10 @@ namespace NeoStack
         private int funNumber = 1;
         public int a { get; set; }
         public int b { get; set; }
-        public double result { get; set; }
         public int degreeX { get; set; }
         public int degreeY { get; set; }
         public ObservableCollection<int> CmbContent { get; private set; }
+        public ObservableCollection<TableRow> Table { get; private set; } 
 
         public int SelectedValue { get; set; }
 
@@ -42,10 +96,12 @@ namespace NeoStack
         public ICommand QuadricCommand { get; private set; }
         public ICommand PenticCommand { get; private set; }
         public ICommand CalculateIt { get; private set; }
+        public ICommand AddRowCommand { get; private set; } // Команда для добавления строки
 
         public ViewModel()
         {
             CmbContent = new ObservableCollection<int>();
+            Table = new ObservableCollection<TableRow>(); // Инициализация коллекции для таблицы
             UpdateContent();
 
             LinearCommand = new RelayCommand(SetLinear);
@@ -54,12 +110,16 @@ namespace NeoStack
             QuadricCommand = new RelayCommand(SetQuadric);
             PenticCommand = new RelayCommand(SetPentic);
             CalculateIt = new RelayCommand(Calculate);
+            AddRowCommand = new RelayCommand(AddRow);
         }
 
         private void Calculate()
         {
-            result = Math.Pow(a, funNumber) + Math.Pow(b, funNumber - 1) + SelectedValue;
-            RaisePropertyChanged(nameof(result));
+            foreach (var row in Table)
+            {
+                row.Result = a * Math.Pow(row.X, degreeX) + b * Math.Pow(row.Y, degreeY) + SelectedValue;
+            }
+            RaisePropertyChanged(nameof(Table));
         }
 
         private void SetLinear()
@@ -121,6 +181,16 @@ namespace NeoStack
                 RaisePropertyChanged(nameof(SelectedValue));
             }
             Calculate();
+        }
+
+        private void AddRow() // Метод для добавления строки
+        {
+            Table.Add(new TableRow
+            {
+                Result = 0,
+                X = 0,
+                Y = 0
+            });
         }
     }
 }

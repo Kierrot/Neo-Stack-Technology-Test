@@ -1,0 +1,88 @@
+﻿<Window x:Class="Gen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gen" 
+        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="322" Width="800">
+    <Grid Background="#FF4E4B4A">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FF4E4B4A" Margin="5">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <Setter Property="FontSize" Value="15"/>
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </StackPanel.Style>
+
+            <Button Content="Линейная" Command="{Binding LinearCommand}" />
+            <Button Content="Квадратичная" Command="{Binding QuadraticCommand}" />
+            <Button Content="Кубическая" Command="{Binding CubicCommand}" />
+            <Button Content="4-ой степени" Command="{Binding QuadricCommand}"/>
+            <Button Content="5-ой степени" Command="{Binding PenticCommand}"/>
+        </StackPanel>
+
+        <Button Content="Вычислить" Height="40" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="5" FontSize ="15"  Command="{Binding CalculateIt}"/>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Background="#FFD89771"/>
+
+        <StackPanel  Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Stretch" Background="#FF4E4B4A" Orientation="Horizontal">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Style.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextAlignment" Value ="Center"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Margin" Value="5"/>
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="TextAlignment" Value ="Center"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Margin" Value="5"/>
+                            <Setter Property="FontFamily" Value="Palatino Linotype"/>
+                        </Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="FontStyle" Value="Italic"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="Margin" Value="5"/>
+                            <Setter Property="FontFamily" Value="Palatino Linotype"/>
+                        </Style>
+                    </Style.Resources>
+                </Style>
+            </StackPanel.Style>
+            <TextBox x:Name="a" Text="{Binding a}"/>
+            <TextBlock>x</TextBlock>
+            <TextBlock Typography.Variants="Superscript" Text="{Binding degreeX}"></TextBlock>
+            <TextBlock>+</TextBlock>
+            <TextBox x:Name="b" Text="{Binding b}"/>
+            <TextBlock>y</TextBlock>
+            <TextBlock Typography.Variants="Superscript" Text="{Binding degreeY}"></TextBlock>
+            <TextBlock>+</TextBlock>
+            <ComboBox x:Name="c" ItemsSource="{Binding CmbContent}" SelectedItem="{Binding SelectedValue}" />
+            <TextBlock>=</TextBlock>
+            <TextBlock MinWidth="50" Text="{Binding result}"></TextBlock>
+        </StackPanel>
+    </Grid>
+
+</Window>

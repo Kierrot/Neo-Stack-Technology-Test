@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gen.Properties
+namespace NeoStack.Properties
 {
 
 

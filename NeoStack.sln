@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gen", "Gen\Gen.csproj", "{7D526575-F4E7-4F1A-BB57-D229B982C92F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoStack", "Gen\NeoStack.csproj", "{7D526575-F4E7-4F1A-BB57-D229B982C92F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

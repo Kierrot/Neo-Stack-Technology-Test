@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Gen
+namespace NeoStack
 {
    
     /// <summary>
@@ -26,7 +26,6 @@ namespace Gen
         private int prevK = 10;
         private int k = 1;
         private int index;
-        private int _selectedValue;
         private int funNumber = 1;
         public int a { get; set; }
         public int b { get; set; }
@@ -35,18 +34,7 @@ namespace Gen
         public int degreeY { get; set; }
         public ObservableCollection<int> CmbContent { get; private set; }
 
-        public int SelectedValue
-        {
-            get { return _selectedValue; }
-            set
-            {
-                if (_selectedValue != value)
-                {
-                    _selectedValue = value;
-                    RaisePropertyChanged(nameof(SelectedValue));
-                }
-            }
-        }
+        public int SelectedValue { get; set; }
 
         public ICommand LinearCommand { get; private set; }
         public ICommand QuadraticCommand { get; private set; }
@@ -70,7 +58,7 @@ namespace Gen
 
         private void Calculate()
         {
-            result = Math.Pow(a, funNumber) + Math.Pow(b, funNumber - 1) + _selectedValue;
+            result = Math.Pow(a, funNumber) + Math.Pow(b, funNumber - 1) + SelectedValue;
             RaisePropertyChanged(nameof(result));
         }
 
@@ -129,7 +117,8 @@ namespace Gen
                 {
                     CmbContent.Add(i * k);
                 }
-                SelectedValue = index * k; 
+                SelectedValue = index * k;
+                RaisePropertyChanged(nameof(SelectedValue));
             }
             Calculate();
         }

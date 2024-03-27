@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.8.34511.84
+VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoStack", "Gen\NeoStack.csproj", "{7D526575-F4E7-4F1A-BB57-D229B982C92F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeoStack", "NeoStack\NeoStack.csproj", "{7D526575-F4E7-4F1A-BB57-D229B982C92F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeoStack.Tests", "NeoStack.Tests\NeoStack.Tests.csproj", "{980B6A04-25A3-42BA-BE3F-8326343F1085}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7D526575-F4E7-4F1A-BB57-D229B982C92F} = {7D526575-F4E7-4F1A-BB57-D229B982C92F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,11 +20,15 @@ Global
 		{7D526575-F4E7-4F1A-BB57-D229B982C92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D526575-F4E7-4F1A-BB57-D229B982C92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D526575-F4E7-4F1A-BB57-D229B982C92F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{980B6A04-25A3-42BA-BE3F-8326343F1085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980B6A04-25A3-42BA-BE3F-8326343F1085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980B6A04-25A3-42BA-BE3F-8326343F1085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980B6A04-25A3-42BA-BE3F-8326343F1085}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B7D797A7-8FA9-4789-B36E-EC9D07DDD8C2}
+		SolutionGuid = {3FE9CB18-35EC-457B-A1ED-DFBA239E487B}
 	EndGlobalSection
 EndGlobal

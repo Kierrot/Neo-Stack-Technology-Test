@@ -61,6 +61,10 @@ namespace NeoStack
         public ICommand CalculateIt { get; private set; }
         public ICommand AddRowCommand { get; private set; }
 
+        public int Test(int x, int y)
+        {
+            return x + y;
+        }
         public MainViewModel()
         {
             CmbContent = new ObservableCollection<int>();
@@ -87,14 +91,17 @@ namespace NeoStack
         {
             foreach (var row in Table)
             {
-                double aValue, bValue, xValue, yValue;
+                double aValue = 0, bValue = 0, xValue = 0, yValue = 0;
                 if (!double.TryParse(a, out aValue) || !double.TryParse(b, out bValue) ||
                     !double.TryParse(row.X.ToString(), out xValue) || !double.TryParse(row.Y.ToString(), out yValue))
                 {
-                    MessageBox.Show("Неверный формат числа!");
-                    return;
+                    a = "0";
+                    b = "0";
+                    RaisePropertyChanged(nameof(a));
+                    RaisePropertyChanged(nameof(b));
                 }
-                row.Result = aValue * Math.Pow(xValue, degreeX) + bValue * Math.Pow(yValue, degreeY) + c;
+                var calc = new Calculator(aValue, bValue, c, xValue, yValue, funNumber);
+                row.Result = calc.Calculate();
             }
             RaisePropertyChanged(nameof(Table));
         }

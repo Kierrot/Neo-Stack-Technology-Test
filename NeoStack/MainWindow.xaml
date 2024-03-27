@@ -113,11 +113,11 @@
                     </Style>
                 </StackPanel.Style>
                 <!-- Поля для a, x, b, y, c, и результата -->
-                <TextBox x:Name="a" Text="{Binding a}"/>
+                <TextBox x:Name="a" Text="{Binding A}"/>
                 <TextBlock>x</TextBlock>
                 <TextBlock Typography.Variants="Superscript" Text="{Binding degreeX}"></TextBlock>
                 <TextBlock>+</TextBlock>
-                <TextBox x:Name="b" Text="{Binding b}"/>
+                <TextBox x:Name="b" Text="{Binding B}"/>
                 <TextBlock>y</TextBlock>
                 <TextBlock Typography.Variants="Superscript" Text="{Binding degreeY}"></TextBlock>
                 <TextBlock>+</TextBlock>
